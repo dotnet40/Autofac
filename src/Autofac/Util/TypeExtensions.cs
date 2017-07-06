@@ -135,9 +135,7 @@ namespace Autofac.Util
         {
             return IsGenericListOrCollectionInterfaceTypeCache.GetOrAdd(
                 type, t => t.IsGenericTypeDefinedBy(typeof(IList<>))
-                           || t.IsGenericTypeDefinedBy(typeof(ICollection<>))
-                           || t.IsGenericTypeDefinedBy(typeof(IReadOnlyCollection<>))
-                           || t.IsGenericTypeDefinedBy(typeof(IReadOnlyList<>)));
+                           || t.IsGenericTypeDefinedBy(typeof(ICollection<>)));
         }
 
         public static bool IsGenericTypeDefinedBy(this Type @this, Type openGeneric)

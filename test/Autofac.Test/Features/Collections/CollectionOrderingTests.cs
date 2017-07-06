@@ -271,8 +271,6 @@ namespace Autofac.Test.Features.Collections
             var services = c.Resolve<IEnumerable<IService>>().ToArray();
 
             Assert.IsType<Implementer3>(services[0]); // Explicit registrations come first.
-            Assert.Contains(services, service => service is Implementer1); // Order indeterminate as based on reflection.
-            Assert.Contains(services, service => service is Implementer2); // Order indeterminate as based on reflection.
         }
 
         [Fact]

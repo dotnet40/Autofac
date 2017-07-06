@@ -90,7 +90,7 @@ namespace Autofac.Core.Activators.Reflection
                     continue;
                 }
 
-                var setParameter = property.SetMethod.GetParameters().First();
+                var setParameter = property.GetSetMethod(true).GetParameters().First();
                 var valueProvider = (Func<object>)null;
                 var parameter = parameters.FirstOrDefault(p => p.CanSupplyValue(setParameter, context, out valueProvider));
                 if (parameter != null)

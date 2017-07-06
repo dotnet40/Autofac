@@ -103,7 +103,7 @@ namespace Autofac.Test
             container.Resolve<object>(TypedParameter.From(false));
             container.BeginLifetimeScope().Resolve<object>(TypedParameter.From(false));
 
-            Interlocked.MemoryBarrier();
+            Thread.MemoryBarrier();
             Assert.Equal(0, unblocked);
             evt.Set();
             blockedThread.Join();

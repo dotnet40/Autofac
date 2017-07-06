@@ -76,8 +76,8 @@ namespace Autofac.Features.Metadata
 
                 foreach (var prop in typeof(TMetadata).GetRuntimeProperties()
                     .Where(prop =>
-                        prop.GetMethod != null && !prop.GetMethod.IsStatic &&
-                        prop.SetMethod != null && !prop.SetMethod.IsStatic))
+                        prop.GetGetMethod(true) != null && !prop.GetGetMethod(true).IsStatic &&
+                        prop.GetSetMethod(true) != null && !prop.GetSetMethod(true).IsStatic))
                 {
                     var dva = Expression.Constant(prop.GetCustomAttribute<DefaultValueAttribute>(false), typeof(DefaultValueAttribute));
                     var name = Expression.Constant(prop.Name, typeof(string));

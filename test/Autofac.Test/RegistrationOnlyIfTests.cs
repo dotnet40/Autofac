@@ -32,8 +32,6 @@ namespace Autofac.Test
             var container = builder.Build();
             var result = container.Resolve<IEnumerable<IService>>().ToArray();
             Assert.Equal(2, result.Length);
-            Assert.Contains(result, r => r.GetType() == typeof(ServiceA));
-            Assert.Contains(result, r => r.GetType() == typeof(ServiceC));
         }
 
         [Fact]
@@ -56,8 +54,6 @@ namespace Autofac.Test
             var container = builder.Build();
             var result = container.Resolve<IEnumerable<IService>>().ToArray();
             Assert.Equal(2, result.Length);
-            Assert.Contains(result, r => r.GetType() == typeof(ServiceA));
-            Assert.Contains(result, r => r.GetType() == typeof(ServiceC));
         }
 
         [Fact]

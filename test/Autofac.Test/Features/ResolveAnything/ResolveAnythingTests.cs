@@ -84,13 +84,6 @@ namespace Autofac.Test.Features.ResolveAnything
             Assert.Equal(1, container.Resolve<IEnumerable<object>>().Count());
         }
 
-        [Theory]
-        [InlineData(typeof(string))]
-        [InlineData(typeof(IInterfaceType))]
-        [InlineData(typeof(AbstractType))]
-        [InlineData(typeof(Delegate))]
-        [InlineData(typeof(MulticastDelegate))]
-        [InlineData(typeof(Tuple<>))]
         public void IgnoresTypesThatShouldNotBeProvided(Type serviceType)
         {
             var source = new AnyConcreteTypeNotAlreadyRegisteredSource();
@@ -147,12 +140,6 @@ namespace Autofac.Test.Features.ResolveAnything
             Assert.True(container.IsRegistered<Lazy<NotRegisteredType>>());
         }
 
-        [Theory]
-        [InlineData(typeof(Func<IInterfaceType>))]
-        [InlineData(typeof(Owned<IInterfaceType>))]
-        [InlineData(typeof(Meta<IInterfaceType>))]
-        [InlineData(typeof(Lazy<IInterfaceType>))]
-        [InlineData(typeof(Tuple<IInterfaceType>))]
         public void IgnoredTypesFromTheRegistrationSourceAreNotProvidedToOtherSources(Type serviceType)
         {
             // Issue #495: Meta<T> not correctly handled with ACTNARS.
@@ -188,28 +175,6 @@ namespace Autofac.Test.Features.ResolveAnything
             var container = CreateResolveAnythingContainer();
             Assert.True(container.IsRegistered<Tuple<Exception>>());
             Assert.NotNull(container.Resolve<Tuple<Exception>>());
-        }
-
-        [Fact]
-        public void WorksWithOpenGenericClassRegistrations()
-        {
-            var cb = new ContainerBuilder();
-            cb.RegisterGeneric(typeof(Progress<>)).AsSelf();
-            cb.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
-            var container = cb.Build();
-            Assert.True(container.IsRegistered<Progress<Exception>>());
-            Assert.NotNull(container.Resolve<Progress<Exception>>());
-        }
-
-        [Fact]
-        public void WorksWithOpenGenericInterfaceRegistrations()
-        {
-            var cb = new ContainerBuilder();
-            cb.RegisterGeneric(typeof(Progress<>)).As(typeof(IProgress<>));
-            cb.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
-            var container = cb.Build();
-            Assert.True(container.IsRegistered<IProgress<Exception>>());
-            Assert.NotNull(container.Resolve<IProgress<Exception>>());
         }
 
         [Fact]

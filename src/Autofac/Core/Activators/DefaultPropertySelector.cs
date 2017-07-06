@@ -45,7 +45,7 @@ namespace Autofac.Core
         /// <returns>Whether property should be injected</returns>
         public virtual bool InjectProperty(PropertyInfo propertyInfo, object instance)
         {
-            if (!propertyInfo.CanWrite || propertyInfo.SetMethod?.IsPublic != true)
+            if (!propertyInfo.CanWrite || propertyInfo.GetSetMethod(true)?.IsPublic != true)
             {
                 return false;
             }

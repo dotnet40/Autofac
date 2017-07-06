@@ -440,14 +440,11 @@ namespace Autofac.Test.Builder
 
         public class HasNullableValueTypeCollection
         {
-            public IReadOnlyCollection<double?> DoubleCollectionInterface { get; set; }
-
             public ReadOnlyCollection<double?> DoubleCollection { get; set; }
 
             public HasNullableValueTypeCollection()
             {
                 DoubleCollection = new ReadOnlyCollection<double?>(new double?[] { null, 0.1, null });
-                DoubleCollectionInterface = DoubleCollection;
             }
         }
 
@@ -461,7 +458,6 @@ namespace Autofac.Test.Builder
             var instance = container.Resolve<HasNullableValueTypeCollection>();
 
             var expected = new ReadOnlyCollection<double?>(new double?[] { null, 0.1, null });
-            Assert.Equal(expected, instance.DoubleCollectionInterface);
             Assert.Equal(expected, instance.DoubleCollection);
         }
 

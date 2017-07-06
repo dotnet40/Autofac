@@ -140,40 +140,6 @@ namespace Autofac.Test.Features.Collections
         }
 
         [Fact]
-        public void ResolvesAllAvailableElementsWhenReadOnlyCollectionIsRequested()
-        {
-            var cb = new ContainerBuilder();
-            const string s1 = "Hello";
-            const string s2 = "World";
-            cb.RegisterInstance(s1);
-            cb.RegisterInstance(s2);
-            var c = cb.Build();
-
-            var strings = c.Resolve<IReadOnlyCollection<string>>();
-
-            Assert.Equal(2, strings.Count);
-            Assert.Contains(s1, strings);
-            Assert.Contains(s2, strings);
-        }
-
-        [Fact]
-        public void ResolvesAllAvailableElementsWhenReadOnlyListIsRequested()
-        {
-            var cb = new ContainerBuilder();
-            const string s1 = "Hello";
-            const string s2 = "World";
-            cb.RegisterInstance(s1);
-            cb.RegisterInstance(s2);
-            var c = cb.Build();
-
-            var strings = c.Resolve<IReadOnlyList<string>>();
-
-            Assert.Equal(2, strings.Count);
-            Assert.Contains(s1, strings);
-            Assert.Contains(s2, strings);
-        }
-
-        [Fact]
         public void ResolvesAllAvailableElementsWhenListIsRequested()
         {
             var cb = new ContainerBuilder();

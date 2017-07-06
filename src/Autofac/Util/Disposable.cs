@@ -66,7 +66,7 @@ namespace Autofac.Util
         {
             get
             {
-                Interlocked.MemoryBarrier();
+                Thread.MemoryBarrier();
                 return _isDisposed == DisposedFlag;
             }
         }

@@ -25,7 +25,7 @@ namespace Autofac.Test.Core
         [Fact]
         public void ThrowsExceptionOnNull()
         {
-            Assert.Throws<ArgumentNullException>("finder", () => new DelegatePropertySelector(null));
+            Assert.Throws<ArgumentNullException>(() => new DelegatePropertySelector(null));
         }
 
         [Fact]

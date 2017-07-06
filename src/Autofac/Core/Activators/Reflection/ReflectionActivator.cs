@@ -181,7 +181,7 @@ namespace Autofac.Core.Activators.Reflection
             {
                 foreach (var actualProperty in actualProperties)
                 {
-                    var setter = actualProperty.SetMethod;
+                    var setter = actualProperty.GetSetMethod(true);
                     Func<object> vp;
                     if (setter != null &&
                         configuredProperty.CanSupplyValue(setter.GetParameters().First(), context, out vp))

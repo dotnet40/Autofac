@@ -7,17 +7,6 @@ namespace Autofac.Test.Core
 {
     public class DefaultPropertySelectorTests
     {
-        [InlineData(true, "PrivatePropertyWithSet", false)]
-        [InlineData(false, "PrivatePropertyWithSet", false)]
-        [InlineData(true, "PublicPropertyNoDefault", true)]
-        [InlineData(false, "PublicPropertyNoDefault", true)]
-        [InlineData(true, "PublicPropertyWithDefault", false)]
-        [InlineData(false, "PublicPropertyWithDefault", true)]
-        [InlineData(true, "PublicPropertyNoGet", true)]
-        [InlineData(true, "PublicPropertyNoSet", false)]
-        [InlineData(true, "PublicPropertyThrowsOnGet", false)]
-        [InlineData(false, "PublicPropertyThrowsOnGet", true)]
-        [Theory]
         public void DefaultTests(bool preserveSetValue, string propertyName, bool expected)
         {
             var finder = new DefaultPropertySelector(preserveSetValue);

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>Autofac is an IoC container for Microsoft .NET. It manages the dependencies between classes so that applications stay easy to change as they grow in size and complexity.</Description>
     <VersionPrefix>4.6.0</VersionPrefix>
-    <TargetFrameworks>net45;netstandard1.1</TargetFrameworks>
+    <TargetFrameworks>net40</TargetFrameworks>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -44,6 +44,11 @@
     <PackageReference Include="System.Runtime.InteropServices.Analyzers" Version="1.2.0-beta2">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
